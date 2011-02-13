@@ -75,7 +75,7 @@ for my $block ( @{$phedex_values->{PHEDEX}->{BLOCK}} )
 #		print $datasetName[0], "\n";
 		$blocksize = $block->{BYTES};
 		for my $replica (@{$block->{REPLICA}}){
-			if($replica->{GROUP} ne ""){
+			if($replica->{GROUP}){
 				  $datasets{ $datasetName[0]}{GROUP} =  $replica->{GROUP};
 			}
 			else
