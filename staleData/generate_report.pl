@@ -11,7 +11,8 @@ use Date::Manip;
 use Date::Calc;
 
 
-
+#set here your site if you like it:
+my $default_site = "T2_BR_UERJ";
 
 my $phedex_ref = WWW::Mechanize->new();
 my %datasets = ();
@@ -20,9 +21,11 @@ my $datasets_ref ={};
 my $site_name = $ARGV[1];
 my @datasetName= "";
 my $char = "#";
-if ($site_name eq "") {$site_name =  "T2_BR_UERJ";}
 my $blocksize=0;
 my $setsize = 0;
+
+$site_name =  $default_site if (not $site_name);
+
 
 sub fetch_json_page
 {
@@ -47,15 +50,16 @@ sub fetch_json_page
 }
 
 my $date_range = $ARGV[0];
-if ($date_range eq "") {$date_range =  "2 weeks ago";}
+
+$date_range =  "2 weeks ago" if (not $date_range) ;
+
 my $today = &ParseDate("today");
 my $startdate = &ParseDate($date_range);
 $today = UnixDate($today,"%d-%m-%Y");
 $startdate = UnixDate($startdate,"%d-%m-%Y");
 print "date = $today ,  Starting Date = $startdate  \n";
 
-my $collections_ref = fetch_json_page("http://dashb-datasets.cern.ch/dashboard/request.py/inputCollectionsTable_JSON?collec_name=&sites=$site_name&date1=$startdate&date2=$today"
-);
+my $collections_ref = fetch_json_page("http://dashb-datasets.cern.ch/dashboard/request.py/inputCollectionsTable_JSON?collec_name=&sites=$site_name&date1=$startdate&date2=$today");
 my @collections = @$collections_ref;
 
 
