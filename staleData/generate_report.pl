@@ -1,5 +1,5 @@
-
 #!/usr/bin/perl -w
+
 # $Author: Carl Lundstedt
 # ARG[0] (optional, defaults to 2 weeks)  should be the time window for
 # starting the stale, e . g . "1 month ago", "2 days ago"
@@ -9,7 +9,6 @@
 
 use strict;
 use WWW::Mechanize;
-use Data::Dumper;
 use JSON -support_by_pp;
 use Date::Manip;
 use Date::Calc;
@@ -93,7 +92,7 @@ sub default {
         #               print $datasetName[0], "\n";
         $blocksize = $block->{BYTES};
         for my $replica ( @{ $block->{REPLICA} } ) {
-            if ( $replica->{GROUP} ne "" ) {
+            if ( $replica->{GROUP}  ) {
                 $datasets{ $datasetName[0] }{GROUP} = $replica->{GROUP};
             }
             else {

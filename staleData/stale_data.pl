@@ -15,7 +15,11 @@ use namespace::autoclean;
 
 App::Rad->run();
 
+
 sub run {
+    
+    #This is to get options easier
+    my $rad = shift;
 
     #set here your site if you like it:
     my $default_site = "T2_BR_UERJ";
@@ -24,7 +28,7 @@ sub run {
     my %datasets          = ();
     my %subscribed_blocks = ();
     my $datasets_ref      = {};
-    my $site_name         = $ARGV[1];
+    my $site_name         = $rad->options->{site} or $rad->options->{s};
     my @datasetName       = "";
     my $char              = "#";
     my $blocksize         = 0;
@@ -57,7 +61,7 @@ sub run {
         }
     }
 
-    my $date_range = $ARGV[0];
+    my $date_range =  $rad->options->{'date'} or $rad->options->{'d'};
 
     $date_range = "2 weeks ago" if ( not $date_range );
 
