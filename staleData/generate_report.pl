@@ -15,6 +15,7 @@ use Date::Calc;
 use namespace::autoclean;
 use App::Rad;
 
+
 App::Rad->run();
 
 sub _fetch_json_page {
@@ -64,8 +65,8 @@ sub default {
     
     if ( not $date_range ) { $date_range = "2 weeks ago"; }
     
-    my $today     = &ParseDate("today");
-    my $startdate = &ParseDate($date_range);
+    my $today     = ParseDate("today");
+    my $startdate = ParseDate($date_range);
     $today     = UnixDate( $today,     "%d-%m-%Y" );
     $startdate = UnixDate( $startdate, "%d-%m-%Y" );
     print "date = $today ,  Starting Date = $startdate  \n";
