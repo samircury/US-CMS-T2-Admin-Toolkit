@@ -9,10 +9,11 @@ import time
 
 # Get all failures
 
-hoursOffset = 12 
+hoursOffset = 18 
 
 def failDistLast(hours):
 
+	#FIXME: The delta T algorithm doesnt work if the difference between the current hour and the offset is smaller than 0. (midnight)
 	finalTime = time.strftime("%Y-%m-%d+%H")+"%3A"+time.strftime("%M")
 	initTime = time.strftime("%Y-%m-%d+")+str(int(time.strftime("%H"))-hoursOffset)+"%3A"+time.strftime("%M")
 	
@@ -56,8 +57,9 @@ def findTotalFail(failDist):
 def findBadNodes(failDist) :
 	badNodes = []
 	totalFail = findTotalFail(failDist)
-	print "aaaaa %d" % totalFail
-	th = 0.1
+	print "Total failures: %d" % totalFail
+	print "================================="
+	th = 0.1 ###### FAILURE THRESHOLD FOR BAD NODES
         for node in failDist.keys():
 		failShare = float(failDist[node])/float(totalFail)
 		if failShare > th:
@@ -69,7 +71,9 @@ failDist = failDistLast(hoursOffset)
 for node in failDist.keys():
 	print "%s had %d failures" % (node, failDist[node])
 
+print "================================="
 print "average failure rate is %d" % findAvgFail(failDist)
+
 
 findBadNodes(failDist)
 
