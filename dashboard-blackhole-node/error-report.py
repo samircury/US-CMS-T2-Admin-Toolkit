@@ -81,16 +81,3 @@ print "average failure rate is %d" % findAvgFail(failDist)
 
 findBadNodes(failDist)
 
-
-
-# Extract site, make sure of site
-
-# Make array (or hash) of nodes
-
-# Iterate, count
-
-# Present distribution
-
-# Depending on option make histogram, check CMSSW environment before.
-
-
