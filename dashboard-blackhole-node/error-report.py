@@ -9,7 +9,7 @@ import time
 
 # Get all failures
 
-hoursOffset = 18 
+hoursOffset = 9 
 
 def failDistLast(hours):
 
@@ -19,7 +19,11 @@ def failDistLast(hours):
 	
 	#print "%s %s" % (initTime, finalTime)
 	
+	#dashbUrl = "http://dashb-cms-job.cern.ch/dashboard/request.py/jobstatus2?user=&site=T2_US_Caltech&submissiontool=&application=&activity=&status=&check=terminated&tier=&sortby=activity&ce=&rb=&grid=&jobtype=&submissionui=&dataset=&submissiontype=&task=&subtoolver=&genactivity=&outputse=&appexitcode=50513&accesstype=&date1=%s&date2=%s&count=9999&offset=0&exitcode=all&fail=all&cat=&len=5000&prettyprint" % (initTime, finalTime)
+	
 	dashbUrl = "http://dashb-cms-job.cern.ch/dashboard/request.py/jobstatus2?user=&site=T2_US_Caltech&submissiontool=&application=&activity=analysis&status=app-failed&check=terminated&tier=&sortby=activity&ce=&rb=&grid=&jobtype=&submissionui=&dataset=&submissiontype=&task=&subtoolver=&genactivity=&outputse=&appexitcode=&accesstype=&date1=%s&date2=%s&count=9999&offset=0&exitcode=all&fail=all&cat=&len=5000&prettyprint" % (initTime, finalTime)
+	print dashbUrl
+
 	
 	response = urllib2.urlopen(dashbUrl)
 	
