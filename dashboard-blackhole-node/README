@@ -13,8 +13,6 @@ After configuring your site name run :
 
 [samir@localhost dashboard-blackhole-node]$ ./error-report.py 
 
-http://dashb-cms-job.cern.ch/dashboard/request.py/jobstatus2?user=&site=T2_US_Caltech&submissiontool=&application=&activity=analysis&status=app-failed&check=terminated&tier=&sortby=activity&ce=&rb=&grid=&jobtype=&submissionui=&dataset=&submissiontype=&task=&subtoolver=&genactivity=&outputse=&appexitcode=&accesstype=&date1=2013-12-27+-2%3A09&date2=2013-12-27+07%3A09&count=9999&offset=0&exitcode=all&fail=all&cat=&len=5000&prettyprint
-
 compute-22-32.tier2 had 2 failures
 compute-31-3.tier2 had 6 failures
 compute-22-13.tier2 had 2 failures
@@ -24,9 +22,6 @@ average failure rate is 34
 Total failures: 138
 =================================
 node compute-22-35.tier2 is bad with 0.927536 failures
-
-
-For reference the DashBoard HTTP query is printed out. The reason is that if something looks wrong, you might need to tune the DashBoard query parameters.
 
 For any questions please contact :
 
