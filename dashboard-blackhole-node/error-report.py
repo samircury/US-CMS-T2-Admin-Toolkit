@@ -88,7 +88,6 @@ def failDistLast(site_name, offset):
                "date1=%s&date2=%s&"\
                "count=9999&offset=0&exitcode=all&fail=all&cat=&len=5000&"\
                "prettyprint" % (site_name, initTime, finalTime)
-    print dashbUrl
 
     response = urllib2.urlopen(dashbUrl)
 
