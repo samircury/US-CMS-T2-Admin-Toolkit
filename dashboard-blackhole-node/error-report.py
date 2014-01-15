@@ -140,8 +140,8 @@ def main():
         for node in failDist.keys():
             print "%s had %d failures" % (node, failDist[node])
 
-            print "================================="
-            print "average failure rate is %d" % findAvgFail(failDist)
+        print "================================="
+        print "average failure rate is %d" % findAvgFail(failDist)
 
         findBadNodes(failDist)
     except InvalidOptionError, ie:
