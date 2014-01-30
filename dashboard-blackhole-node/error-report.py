@@ -78,7 +78,7 @@ def failDistLast(site_name, offset):
     #FIXME: The delta T algorithm doesn't work if the difference between the current hour and the offset is smaller 
     #       than 0. (midnight)
     finalTime = time.strftime("%Y-%m-%d+%H") + "%3A" + time.strftime("%M")
-    initTime = time.strftime("%Y-%m-%d+") + str(int(time.strftime("%H")) - offset) + "%3A" + time.strftime("%M")
+    initTime = time.strftime("%Y-%m-%d+") + str(int(time.strftime("%H")) - int(offset)) + "%3A" + time.strftime("%M")
 
     dashbUrl = "http://dashb-cms-job.cern.ch/dashboard/request.py/jobstatus2?" \
                "user=&site=%s&"\
