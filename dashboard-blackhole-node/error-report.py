@@ -47,6 +47,8 @@ failures to node names.  Using some basic statistics, we can detect possible
 """
         opt_help_str = "hours offset: time zone offset. Defaults to 9 [optional]"
         self.add_option("-o", "--hours-offset", dest="hoursOffset", default=9, help=opt_help_str)
+	
+        self.add_option("-a", "--activity", dest="activity", default="", help="specify activity, default = all")
 
         self.options = None
         self.args = None
@@ -73,7 +75,7 @@ failures to node names.  Using some basic statistics, we can detect possible
         self.validate_options()
         self.validate_args()
 
-def failDistLast(site_name, offset):
+def failDistLast(site_name, activity, offset):
 
     #FIXME: The delta T algorithm doesn't work if the difference between the current hour and the offset is smaller 
     #       than 0. (midnight)
@@ -82,12 +84,13 @@ def failDistLast(site_name, offset):
 
     dashbUrl = "http://dashb-cms-job.cern.ch/dashboard/request.py/jobstatus2?" \
                "user=&site=%s&"\
-               "submissiontool=&application=&activity=analysis&status=app-failed&check=terminated&"\
+               "submissiontool=&application=&activity=%s&status=app-failed&check=terminated&"\
                "tier=&sortby=activity&ce=&rb=&grid=&jobtype=&submissionui=&dataset=&submissiontype=&"\
                "task=&subtoolver=&genactivity=&outputse=&appexitcode=&accesstype=&"\
                "date1=%s&date2=%s&"\
                "count=9999&offset=0&exitcode=all&fail=all&cat=&len=5000&"\
-               "prettyprint" % (site_name, initTime, finalTime)
+               "prettyprint" % (site_name, activity, initTime, finalTime)
+    print dashbUrl
 
     response = urllib2.urlopen(dashbUrl)
 
@@ -134,8 +137,9 @@ def main():
         prog_opts.parse()
         site_name = prog_opts.args[0]
         offset = prog_opts.options.hoursOffset
+	activity = prog_opts.options.activity
 
-        failDist = failDistLast(site_name, offset)
+        failDist = failDistLast(site_name, activity, offset)
 
         for node in failDist.keys():
             print "%s had %d failures" % (node, failDist[node])
