@@ -1,0 +1,7 @@
+WARNING : The current version does NOT implement the algorithm that is supposed to be.
+
+The algorithm should be :
+
+  * Find TASKS that have more than 80% of jobs failing AND more than 100 (configurable) JOBS TERMINATED
+  * For these tasks, get the JOB EXIT CODE distribution.
+    * IF exit code 50664 is more than 80% of the reason for failed jobs, TASK IS BAD
